@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CRUDCoreApplication.Models.EmployeeModel>
+@{
+    ViewData["Title"] = "Index";
+     int Count = 1;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h1 class="text-center text-primary">Employee Record</h1>
+            <a class="btn btn-sm btn-success m-1" asp-controller="Employee" asp-action="Create">Create</a>
+            <p class="text-center text-success">@TempData["SuccessMsg"]</p>
+            <p class="text-center text-danger">@TempData["DeleteMsg"]</p>
+           
+            <table class="table table-bordered">
+                <tr class="text-center">
+                    <th>Sr. No</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Salary</th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach (var Emp in Model)
+                {
+            <tr>
+                <td>@Count</td>
+                <td>@Emp.Name</td>
+                <td>@Emp.City</td>
+                <td>@Emp.State</td>
+                <td>@Emp.Salary</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-controller="Employee" asp-action="Edit" asp-route-id="@Emp.EmployeeID">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-controller="Employee" asp-action="Delete" asp-route-id="@Emp.EmployeeID">Delete</a>
+                </td>
+            </tr>
+                    Count++;
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+

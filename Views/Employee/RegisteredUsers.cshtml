@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CRUDCoreApplication.Models.ViewModel.SignupViewModel>
+@{
+    ViewData["Title"] = "Registered User's";
+    int Count = 1;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h1 class="text-center text-primary">Registered User's</h1>
+            <a class="btn btn-sm btn-success m-1" asp-controller="Employee" asp-action="Create">Create</a>
+            <p class="text-center text-success">@TempData["SuccessMsg"]</p>
+            <p class="text-center text-danger">@TempData["DeleteMsg"]</p>
+
+            <table class="table table-bordered">
+                <tr class="text-center">
+                    <th>Sr. No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile No</th>
+                    <th>Password</th>
+                    <th>Status</th>
+                    <th>Created On</th>
+                    <th>Created By</th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach (var RegUser in Model)
+                {
+            <tr>
+                <td>@Count</td>
+                <td>@RegUser.UserName</td>
+                <td>@RegUser.Email</td>
+                <td>@RegUser.Mobile</td>
+                <td>@RegUser.Password</td>
+                <td>@RegUser.IsActive</td>
+                <td>@RegUser.CreatedOn</td>
+                <td>@RegUser.CreatedBy</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-controller="Employee" asp-action="Edit" asp-route-id="@RegUser.UserID">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-controller="Employee" asp-action="Delete" asp-route-id="@RegUser.UserID">Delete</a>
+                </td>
+            </tr>
+                    Count++;
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
