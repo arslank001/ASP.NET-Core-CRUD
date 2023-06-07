@@ -131,5 +131,10 @@ namespace CRUDCoreApplication.Controllers
             TempData["DeleteMsg"] = "Record has been deleted successfully!";
             return RedirectToAction("Index");
         }
+
+        public IActionResult Testing()
+        {
+            return View();
+        }
     }
 }
